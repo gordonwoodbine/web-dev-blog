@@ -1,5 +1,14 @@
 <%- include('./partials/header', {titlePartial: 'Home | '}) -%>
 
-<h1>Hello World!</h1>
+<% posts.forEach(post => { %>
+    <div class="blog-post">
+      <h2 class="blog-post__title"><%= post.title %></h2>
+      <p class="blog-post__body">
+        <% const trimmed = post.body.split(' ').slice(0, 45).join(' ') + '...' %>
+        <%= trimmed %>
+      </p>
+      <a class="blog-post__btn" href="#">Read More</a>
+    </div>
+<% }) %>
 
 <%- include('./partials/footer') -%>
