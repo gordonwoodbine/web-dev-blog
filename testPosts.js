@@ -1,6 +1,7 @@
 exports.posts = [
   {
     title: 'My First Post',
+    slug: 'my-first-post',
     body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu non diam phasellus vestibulum lorem. Nibh nisl condimentum id venenatis a condimentum vitae sapien. A diam maecenas sed enim ut sem viverra. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Arcu dictum varius duis at consectetur. Mattis rhoncus urna neque viverra justo nec ultrices dui sapien. Ultricies leo integer malesuada nunc vel. Vel risus commodo viverra maecenas accumsan lacus vel facilisis. Euismod nisi porta lorem mollis aliquam ut porttitor leo. Enim tortor at auctor urna nunc id.
 
     Odio ut sem nulla pharetra diam sit amet nisl suscipit. Adipiscing bibendum est ultricies integer quis auctor. Fames ac turpis egestas integer eget aliquet nibh praesent tristique. Turpis massa tincidunt dui ut ornare lectus sit amet. Risus at ultrices mi tempus imperdiet. Pellentesque sit amet porttitor eget. In tellus integer feugiat scelerisque varius. Vel eros donec ac odio tempor orci. Commodo elit at imperdiet dui accumsan sit. Interdum varius sit amet mattis vulputate enim. Ante in nibh mauris cursus mattis molestie a. Nisl suscipit adipiscing bibendum est ultricies. Ultrices eros in cursus turpis massa tincidunt dui ut. Turpis egestas integer eget aliquet. Consequat ac felis donec et.
@@ -14,6 +15,7 @@ exports.posts = [
   },
   {
     title: 'Another Blog Post',
+    slug: 'another-blog-post',
     body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae purus faucibus ornare suspendisse sed nisi. Eget nunc lobortis mattis aliquam faucibus. Tortor at risus viverra adipiscing at in tellus integer. At in tellus integer feugiat scelerisque varius morbi enim nunc. At erat pellentesque adipiscing commodo elit at imperdiet. Risus quis varius quam quisque id diam vel. Nulla facilisi morbi tempus iaculis urna. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Erat nam at lectus urna duis. Integer malesuada nunc vel risus commodo. Quis risus sed vulputate odio ut. Felis imperdiet proin fermentum leo vel.
 
     Leo vel fringilla est ullamcorper eget. Id interdum velit laoreet id. Nisl vel pretium lectus quam id leo in vitae. Velit laoreet id donec ultrices tincidunt. Lorem donec massa sapien faucibus et. In aliquam sem fringilla ut morbi tincidunt augue interdum velit. Odio eu feugiat pretium nibh ipsum consequat. Vitae ultricies leo integer malesuada nunc vel risus commodo. Lobortis elementum nibh tellus molestie nunc. Lorem sed risus ultricies tristique nulla aliquet enim. Amet mauris commodo quis imperdiet massa tincidunt nunc. Enim lobortis scelerisque fermentum dui.

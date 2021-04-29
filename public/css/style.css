@@ -1,3 +1,8 @@
+:root {
+  --site-primary: #ff9900;
+  --site-dark: #333;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -26,13 +31,21 @@ main {
   padding: 0 1.5rem;
 }
 
+.section {
+  margin-top: 2rem;
+}
+
+.title {
+  margin-bottom: 1.2rem;
+}
+
 .btn {
   font-family: inherit;
   font-size: 1rem;
-  background-color: #fdb700;
+  background-color: var(--site-primary);
   padding: 0.7rem 1.5rem;
   border: none;
-  color: #333;
+  color: var(--site-dark);
   border-radius: 5px;
   cursor: pointer;
   -webkit-transition: background-color 0.2s ease-out;
@@ -47,12 +60,17 @@ main {
 *  Header Styles  *
 *******************/
 .site-header {
+  position: relative;
   min-height: 200px;
-  background-color: #333;
+  background-color: var(--site-dark);
   color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -63,11 +81,33 @@ main {
 
 .site-header__text {
   text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-top: 1rem;
 }
 
 .site-header__text__title {
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.site-nav {
+  background-color: var(--site-primary);
+  padding: 0.6rem 0;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+.site-nav__link {
+  text-decoration: none;
+  background-color: var(--site-dark);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+}
+
+.site-nav__link:hover {
+  text-decoration: underline;
 }
 
 /*******************************
@@ -87,7 +127,7 @@ main {
 
 .blog-post__btn {
   text-decoration: none;
-  background-color: #333;
+  background-color: var(--site-dark);
   color: #fff;
   padding: 1rem 2rem;
   margin: 2rem 0 1rem 0;
@@ -97,6 +137,12 @@ main {
 .blog-post:nth-child(even) {
   background-color: #ff9900e7;
   color: #333;
+}
+
+.post-section {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /************************
@@ -111,7 +157,7 @@ main {
   width: 100%;
   font-size: 1.3rem;
   padding: 0.3rem;
-  border: 2px solid #333;
+  border: 2px solid var(--site-dark);
   border-radius: 5px;
   height: 34px;
   -webkit-transition: border-color 0.3s ease-out;
@@ -119,7 +165,7 @@ main {
 }
 
 .form-control:focus {
-  border-color: #fdb700;
+  border-color: var(--site-primary);
   outline: 0;
 }
 
@@ -135,7 +181,7 @@ main {
 *  Footer Styles  *
 *******************/
 .site-footer {
-  background-color: #333;
+  background-color: var(--site-dark);
   color: #fff;
   padding: 1rem 0;
 }

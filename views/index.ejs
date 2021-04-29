@@ -9,7 +9,7 @@
         <% const trimmed = post.body.split(' ').slice(0, 45).join(' ') + '...' %>
         <%= trimmed %>
       </p>
-      <a class="blog-post__btn" href="#">Read More</a>
+      <a class="blog-post__btn" href="/posts/<%= post.slug %>">Read More</a>
     </div>
 <% }) %>
 

@@ -1,7 +1,7 @@
 <%- include('./partials/header', {titlePartial: 'Compose | '}) -%>
 
-
-  <h1>New Post</h1>
+<section class="section compose-section">
+  <h2 class="title">Create New Post</h2>
   <form class="compose-form" action="/compose" method="post">
     <div class="form-group">
       <label for="title">Post Title</label>
@@ -13,7 +13,7 @@
     </div>
     <button class="btn" type="submit">Publish</button>
   </form>
-
+</section>
 
 
 <%- include('./partials/footer') -%>
