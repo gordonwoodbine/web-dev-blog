@@ -23,6 +23,22 @@ main {
   padding: 0 1.5rem;
 }
 
+.btn {
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: #fdb700;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out;
+
+  &:hover {
+    background-color: #ffd05b;
+  }
+}
+
 /******************
 *  Header Styles  *
 *******************/
@@ -44,6 +60,9 @@ main {
     }
   }
 }
+/*******************************
+*  Main Page Blog Post Styles  *
+********************************/
 
 .blog-post {
   max-width: 700px;
@@ -64,6 +83,44 @@ main {
     margin: 2rem 0 1rem 0;
     display: inline-block;
   }
+
+  &:nth-child(even) {
+    background-color: #ff9900e7;
+    color: #333;
+  }
+}
+
+/************************
+*  Compose Page Styles  *
+*************************/
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 0.3rem;
+  border: 2px solid #333;
+  border-radius: 5px;
+  height: 34px;
+  transition: border-color 0.3s ease-out;
+  // outline-color: #fdb700;
+}
+
+.form-control:focus {
+  border-color: #fdb700;
+  outline: 0;
+}
+
+.ta-vertical {
+  height: auto;
+  resize: vertical;
+  max-height: 40vh;
+  min-height: 200px;
+  font-family: inherit;
 }
 
 /******************

@@ -1,5 +1,7 @@
 <%- include('./partials/header', {titlePartial: 'Home | '}) -%>
 
+<a href="/compose">Compose</a>
+
 <% posts.forEach(post => { %>
     <div class="blog-post">
       <h2 class="blog-post__title"><%= post.title %></h2>

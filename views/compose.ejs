@@ -1,0 +1,19 @@
+<%- include('./partials/header', {titlePartial: 'Compose | '}) -%>
+
+
+  <h1>New Post</h1>
+  <form class="compose-form" action="/compose" method="post">
+    <div class="form-group">
+      <label for="title">Post Title</label>
+      <input class="form-control" type="text" name="title" id="title" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="body">Post Content</label>
+      <textarea class="form-control ta-vertical" name="body" id="body" cols="30" rows="10"></textarea>
+    </div>
+    <button class="btn" type="submit">Publish</button>
+  </form>
+
+
+
+<%- include('./partials/footer') -%>
