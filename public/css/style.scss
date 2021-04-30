@@ -29,7 +29,7 @@ main {
 }
 
 .section {
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .title {
@@ -120,7 +120,7 @@ main {
     display: inline-block;
   }
 
-  &:nth-child(even) {
+  &:nth-child(odd) {
     background-color: #ff9900e7;
     color: #333;
   }
@@ -130,6 +130,10 @@ main {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+
+  & p {
+    margin-top: 2rem;
+  }
 }
 
 /************************

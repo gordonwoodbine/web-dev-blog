@@ -2,7 +2,12 @@
 
 <section class="section post-section">
   <h2 class="title"><%= postTitle %></h2>
-  <p><%= postBody %></p>
+  <!--<div><%= postBody %></div> -->
+  <% postBody.split('\n').forEach(p => { %>
+    <% if(p !== '') { %>
+      <p><%= p %></p>
+    <% } %>
+  <% }) %>
 </section>
 
 
