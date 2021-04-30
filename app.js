@@ -1,45 +1,60 @@
+// Imports
+
 const express = require('express');
+const mongoose = require('mongoose');
 const helmet = require('helmet');
-const _ = require('lodash');
-const { posts } = require('./testPosts');
 
 const app = express();
+
+// Configure Express
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(helmet());
 
-console.log(_.kebabCase('My First Post'));
-console.log(_.kebabCase('Another Blog Post'));
+// Configure Mongoose
+
+mongoose.connect('mongodb://localhost:27017/blogDB', {useNewUrlParser: true, useUnifiedTopology: true});
+
+const postSchema = {
+  title: String,
+  content: String,
+  date: {type: Date, default: Date.now }
+}
+
+const Post = mongoose.model('Post', postSchema);
 
 app.get('/', (req, res) => {
-  res.render('index', {posts: posts});
+  Post.find({}, (err, posts) => {
+    res.render('index', {posts: posts});
+  });
 });
 
 app.get('/compose', (req, res) => {
   res.render('compose');
 });
 
-app.get('/posts/:postTitle', (req, res) => {
-  const requestedPost = _.lowerCase(req.params.postTitle);
-  posts.forEach(post => {
-    if(_.lowerCase(post.title) === requestedPost) {
-      res.render('post', {postTitle: post.title, postBody: post.body})
+app.get('/posts/:postId', (req, res) => {
+  const requestedPostId = req.params.postId;
+  Post.findOne({ _id: requestedPostId }, (err, post) => {
+    if(err) {
+      post = {title: 'Not Found', content: 'There appears to be a problem with the post id.'}
     }
+    res.render('post', {post: post});
   });
 });
 
 app.post('/compose', (req, res) => {
-  const newPost = {
+  const post = new Post({
     title: req.body.title,
-    body: req.body.body,
-    slug: _.kebabCase(req.body.title),
-    postDate: new Date().toLocaleString()
-  }
-
-  posts.push(newPost);
-  res.redirect('/');
+    content: req.body.body
+  });
+  post.save(err => {
+    if(!err) {
+      res.redirect('/');
+    }
+  });
 })
 
 app.listen(process.env.PORT || 5000, () => {

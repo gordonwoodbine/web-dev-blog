@@ -108,7 +108,12 @@ main {
   padding: 2rem 3rem;
 
   &__title {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__date {
+    margin-bottom: 1rem;
+    opacity: 0.7;
   }
 
   &__btn {

@@ -1,9 +1,9 @@
-<%- include('./partials/header', { titlePartial: postTitle + ' | ' }) -%>
+<%- include('./partials/header', { titlePartial: post.title + ' | ' }) -%>
 
 <section class="section post-section">
-  <h2 class="title"><%= postTitle %></h2>
-  <!--<div><%= postBody %></div> -->
-  <% postBody.split('\n').forEach(p => { %>
+  <h2 class="title"><%= post.title %></h2>
+  <!--<div><%= post.content %></div> -->
+  <% post.content.split('\n').forEach(p => { %>
     <% if(p !== '') { %>
       <p><%= p %></p>
     <% } %>
