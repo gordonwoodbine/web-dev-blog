@@ -80,15 +80,19 @@ main {
 
 .site-nav {
   background-color: var(--site-primary);
-  padding: 0.6rem 0;
-  padding-left: 1rem;
+  // padding: 0.6rem 0;
+  // padding-left: 1rem;
   width: 100%;
+  display: flex;
+  justify-content: center;
 
   &__link {
     text-decoration: none;
-    background-color: var(--site-dark);
-    color: #fff;
+    // background-color: var(--site-dark);
+    color: #333;
+    font-weight: 700;
     padding: 0.6rem 1.2rem;
+    margin: 0 1rem;
 
     &:hover {
       text-decoration: underline;
@@ -152,7 +156,7 @@ main {
 .form-control {
   display: block;
   width: 100%;
-  font-size: 1.3rem;
+  font-size: 0.9rem;
   padding: 0.3rem;
   border: 2px solid var(--site-dark);
   border-radius: 5px;
@@ -174,6 +178,12 @@ main {
   font-family: inherit;
 }
 
+// Login
+
+.login {
+  width: 400px;
+}
+
 /******************
 *  Footer Styles  *
 *******************/
@@ -186,5 +196,9 @@ main {
   &__text {
     text-align: center;
     font-size: 0.8rem;
+  }
+
+  & a {
+    color: #fff;
   }
 }

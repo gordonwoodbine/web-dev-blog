@@ -4,6 +4,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
+const session = require('express-session');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const app = express();
 dotenv.config();
@@ -15,9 +18,19 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(helmet());
 
+app.use(session({
+  secret: process.env.SESSION_SEC,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Configure Mongoose
 
 mongoose.connect(process.env.MONGO_STR, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useCreateIndex', true);
 
 const postSchema = {
   title: String,
@@ -27,7 +40,20 @@ const postSchema = {
 
 const Post = mongoose.model('Post', postSchema);
 
-// Routes
+const userSchema = new mongoose.Schema({
+  email: String,
+  password: String
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+const User = mongoose.model('User', userSchema);
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Get Routes
 
 app.get('/', (req, res) => {
   Post.find({}, (err, posts) => {
@@ -36,7 +62,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/compose', (req, res) => {
-  res.render('compose');
+  if(req.isAuthenticated()) {
+    res.render('compose');
+  } else {
+    res.redirect('/login');
+  }
 });
 
 app.get('/posts/:postId', (req, res) => {
@@ -49,6 +79,17 @@ app.get('/posts/:postId', (req, res) => {
   });
 });
 
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+})
+
+// Post Routes
+
 app.post('/compose', (req, res) => {
   const post = new Post({
     title: req.body.title,
@@ -59,7 +100,10 @@ app.post('/compose', (req, res) => {
       res.redirect('/');
     }
   });
-})
+});
+
+app.post('/login',
+  passport.authenticate('local', {successRedirect: '/compose', failureRedirect: '/login'}));
 
 app.listen(process.env.PORT, () => {
   console.log('Server running...');
