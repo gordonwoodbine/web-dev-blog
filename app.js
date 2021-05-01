@@ -3,8 +3,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const dotenv = require('dotenv');
 
 const app = express();
+dotenv.config();
 
 // Configure Express
 
@@ -15,7 +17,7 @@ app.use(helmet());
 
 // Configure Mongoose
 
-mongoose.connect('mongodb://localhost:27017/blogDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGO_STR, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const postSchema = {
   title: String,
@@ -24,6 +26,8 @@ const postSchema = {
 }
 
 const Post = mongoose.model('Post', postSchema);
+
+// Routes
 
 app.get('/', (req, res) => {
   Post.find({}, (err, posts) => {
@@ -57,6 +61,6 @@ app.post('/compose', (req, res) => {
   });
 })
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT, () => {
   console.log('Server running...');
 });
