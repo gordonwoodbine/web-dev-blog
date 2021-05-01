@@ -33,6 +33,9 @@ main {
 
 .section {
   margin: 2rem 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
@@ -81,6 +84,7 @@ main {
 
 .site-header__text {
   text-align: center;
+  font-size: 1.1rem;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -89,7 +93,18 @@ main {
 
 .site-header__text__title {
   font-size: 3rem;
-  margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .site-header__text {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .site-header__text__title {
+    font-size: 2rem;
+  }
 }
 
 .site-nav {
@@ -107,7 +122,7 @@ main {
   text-decoration: none;
   color: #333;
   font-weight: 700;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.2rem 0.6rem 0;
   margin: 0 1rem;
 }
 
@@ -119,7 +134,7 @@ main {
 *  Main Page Blog Post Styles  *
 ********************************/
 .blog-post {
-  max-width: 700px;
+  max-width: 900px;
   margin: 2rem auto;
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -142,21 +157,47 @@ main {
   padding: 1rem 2rem;
   margin: 2rem 0 1rem 0;
   display: inline-block;
+  -webkit-transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out;
 }
 
-.blog-post:nth-child(odd) {
+.blog-post__btn:hover {
+  background-color: #616161;
+}
+
+.blog-post:nth-child(even) {
   background-color: #ff9900e7;
   color: #333;
 }
 
-.post-section {
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+@media screen and (max-width: 480px) {
+  main {
+    padding: 0;
+  }
+  .blog-post {
+    padding: 2rem 1.5rem;
+  }
+  .section {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
 
+/***************************
+*  Individual Post Styles  *
+****************************/
 .post-section p {
-  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-section__date {
+  color: #575757;
+}
+
+.post-btn {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 0.5rem;
 }
 
 /************************

@@ -1,14 +1,12 @@
 <%- include('./partials/header', {titlePartial: 'Home | '}) -%>
 
-<a href="/compose">Compose</a>
-
 <% posts.forEach(post => { %>
     <div class="blog-post">
       <h2 class="blog-post__title"><%= post.title %></h2>
       <% const date = post.date.toLocaleDateString('en-GB') %>
       <p class="blog-post__date">- <%= date %></p>
       <p class="blog-post__body">
-        <% const trimmed = post.content.split(' ').slice(0, 45).join(' ') + '...' %>
+        <% const trimmed = post.content.split(' ').slice(0, 100).join(' ') + '...' %>
         <%= trimmed %>
       </p>
       <a class="blog-post__btn" href="/posts/<%= post._id %>">Read More</a>

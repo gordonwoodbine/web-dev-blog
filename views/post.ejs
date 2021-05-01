@@ -2,12 +2,15 @@
 
 <section class="section post-section">
   <h2 class="title"><%= post.title %></h2>
-  <!--<div><%= post.content %></div> -->
+  <p class="post-section__date">
+    Posted on: <%= post.date.toLocaleDateString() %>
+  </p>
   <% post.content.split('\n').forEach(p => { %>
     <% if(p !== '') { %>
       <p><%= p %></p>
     <% } %>
   <% }) %>
+  <a href="/" class="btn post-btn">Back to Home</a>
 </section>
 
 
