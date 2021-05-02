@@ -5,12 +5,13 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
+
   padding: 0;
 }
 
 body {
   font-family: 'Monda', sans-serif;
+  margin: 0;
 }
 
 .site-wrapper {
@@ -78,6 +79,10 @@ main {
     &__title {
       font-size: 3rem;
       // margin-bottom: 0.5rem;
+    }
+
+    & > * {
+      margin: 0;
     }
   }
 }
@@ -179,12 +184,9 @@ main {
 ****************************/
 
 .post-section {
-  & p {
-    margin-bottom: 1.5rem;
-  }
-
   &__date {
     color: #575757;
+    text-decoration: underline;
   }
 }
 
@@ -245,6 +247,10 @@ main {
   &__text {
     text-align: center;
     font-size: 0.8rem;
+
+    & > * {
+      margin: 0;
+    }
   }
 
   & a {

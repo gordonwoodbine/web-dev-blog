@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
+const md = require('markdown-it')();
 
 const app = express();
 dotenv.config();
@@ -16,7 +17,7 @@ dotenv.config();
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
-app.use(helmet());
+// app.use(helmet());
 
 app.use(session({
   secret: process.env.SESSION_SEC,
@@ -29,7 +30,8 @@ app.use(passport.session());
 
 // Configure Mongoose
 
-mongoose.connect(process.env.MONGO_STR, {useNewUrlParser: true, useUnifiedTopology: true});
+/* Change MONGO_LOCAL back to MONGO_STR before pushing live */
+mongoose.connect(process.env.MONGO_LOCAL, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
 
 const postSchema = {
@@ -56,9 +58,12 @@ passport.deserializeUser(User.deserializeUser());
 // Get Routes
 
 app.get('/', (req, res) => {
-  Post.find({}, (err, posts) => {
+  Post.find({}).sort({date: -1}).exec((err, posts) => {
     res.render('index', {posts: posts});
   });
+  // Post.find({}, (err, posts) => {
+  //   res.render('index', {posts: posts});
+  // });
 });
 
 app.get('/about', (req, res) => {
@@ -95,9 +100,11 @@ app.get('/logout', (req, res) => {
 // Post Routes
 
 app.post('/compose', (req, res) => {
+  // const convertedMD = marked(req.body.body);
+  const convertedMD = md.render(req.body.body)
   const post = new Post({
     title: req.body.title,
-    content: req.body.body
+    content: convertedMD
   });
   post.save(err => {
     if(!err) {

@@ -5,10 +5,10 @@
       <h2 class="blog-post__title"><%= post.title %></h2>
       <% const date = post.date.toLocaleDateString('en-GB') %>
       <p class="blog-post__date">- <%= date %></p>
-      <p class="blog-post__body">
+      <div class="blog-post__body">
         <% const trimmed = post.content.split(' ').slice(0, 100).join(' ') + '...' %>
-        <%= trimmed %>
-      </p>
+        <%- trimmed -%>
+      </div>
       <a class="blog-post__btn" href="/posts/<%= post._id %>">Read More</a>
     </div>
 <% }) %>

@@ -6,12 +6,12 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  margin: 0;
   padding: 0;
 }
 
 body {
   font-family: 'Monda', sans-serif;
+  margin: 0;
 }
 
 .site-wrapper {
@@ -93,6 +93,10 @@ main {
 
 .site-header__text__title {
   font-size: 3rem;
+}
+
+.site-header__text > * {
+  margin: 0;
 }
 
 @media screen and (max-width: 600px) {
@@ -186,12 +190,9 @@ main {
 /***************************
 *  Individual Post Styles  *
 ****************************/
-.post-section p {
-  margin-bottom: 1.5rem;
-}
-
 .post-section__date {
   color: #575757;
+  text-decoration: underline;
 }
 
 .post-btn {
@@ -248,6 +249,10 @@ main {
 .site-footer__text {
   text-align: center;
   font-size: 0.8rem;
+}
+
+.site-footer__text > * {
+  margin: 0;
 }
 
 .site-footer a {

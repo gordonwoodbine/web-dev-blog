@@ -4,12 +4,11 @@
   <h2 class="title"><%= post.title %></h2>
   <p class="post-section__date">
     Posted on: <%= post.date.toLocaleDateString() %>
+    at <%= post.date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'}) %>
   </p>
-  <% post.content.split('\n').forEach(p => { %>
-    <% if(p !== '') { %>
-      <p><%= p %></p>
-    <% } %>
-  <% }) %>
+  <div class="blog-content">
+    <%- post.content -%>
+  </div>
   <a href="/" class="btn post-btn">Back to Home</a>
 </section>
 
