@@ -1,6 +1,10 @@
 :root {
-  --site-primary: #ff9900;
+  // --site-primary: #ff9900;
+  // --site-primary-lighter: #ffd05b;
+  --site-primary: rgb(196, 50, 50);
+  --site-primary-lighter: rgb(240, 72, 72);
   --site-dark: #333;
+  --site-dark-lighter: rgb(97, 97, 97);
 }
 
 * {
@@ -43,16 +47,18 @@ main {
 .btn {
   font-family: inherit;
   font-size: 1rem;
+  text-decoration: none;
   background-color: var(--site-primary);
   padding: 0.7rem 1.5rem;
   border: none;
-  color: var(--site-dark);
+  // color: var(--site-dark);
+  color: #fff;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease-out;
 
   &:hover {
-    background-color: #ffd05b;
+    background-color: var(--site-primary-lighter);
   }
 }
 
@@ -104,8 +110,6 @@ main {
 
 .site-nav {
   background-color: var(--site-primary);
-  // padding: 0.6rem 0;
-  // padding-left: 1rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -113,7 +117,7 @@ main {
   &__link {
     text-decoration: none;
     // background-color: var(--site-dark);
-    color: #333;
+    color: #fff;
     font-weight: 700;
     padding: 0.6rem 1.2rem 0.6rem 0;
     margin: 0 1rem;
@@ -145,7 +149,6 @@ main {
   }
 
   &__btn {
-    text-decoration: none;
     background-color: var(--site-dark);
     color: #fff;
     padding: 1rem 2rem;
@@ -154,13 +157,32 @@ main {
     transition: background-color 0.3s ease-out;
 
     &:hover {
-      background-color: rgb(97, 97, 97);
+      background-color: var(--site-dark-lighter);
     }
   }
 
   &:nth-child(even) {
-    background-color: #ff9900e7;
-    color: #333;
+    background-color: var(--site-primary);
+    color: #fff;
+  }
+}
+
+.page-nav {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+
+  &__link {
+    margin-right: 1rem;
+  }
+}
+
+.btn-prev {
+  background-color: var(--site-dark);
+  color: #fff;
+
+  &:hover {
+    background-color: var(--site-dark-lighter);
   }
 }
 

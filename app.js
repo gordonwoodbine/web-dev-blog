@@ -2,6 +2,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
 const session = require('express-session');
@@ -11,6 +12,7 @@ const md = require('markdown-it')();
 
 const app = express();
 dotenv.config();
+let pageTracker = 1;
 
 // Configure Express
 
@@ -34,11 +36,13 @@ app.use(passport.session());
 mongoose.connect(process.env.MONGO_LOCAL, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
 
-const postSchema = {
+const postSchema = new mongoose.Schema({
   title: String,
   content: String,
   date: {type: Date, default: Date.now }
-}
+});
+
+postSchema.plugin(mongoosePaginate);
 
 const Post = mongoose.model('Post', postSchema);
 
@@ -58,12 +62,26 @@ passport.deserializeUser(User.deserializeUser());
 // Get Routes
 
 app.get('/', (req, res) => {
-  Post.find({}).sort({date: -1}).exec((err, posts) => {
-    res.render('index', {posts: posts});
-  });
-  // Post.find({}, (err, posts) => {
-  //   res.render('index', {posts: posts});
-  // });
+  pageTracker = 1;
+  Post.paginate({}, { page: 1, limit: 5, sort: { date: -1 }}, ((err, result) => {
+    res.render('index', { 
+      posts: result.docs, 
+      prevPage: result.prevPage,
+      nextPage: result.nextPage
+    });
+  }));
+});
+
+app.get('/pages/:page', (req, res) => {
+  const page = req.params.page;
+  pageTracker = page;
+  Post.paginate({}, { page: page, limit: 5, sort: { date: -1 }}, ((err, result) => {
+    res.render('index', {
+      posts: result.docs,
+      prevPage: result.prevPage,
+      nextPage: result.nextPage
+    });
+  }));
 });
 
 app.get('/about', (req, res) => {
@@ -84,7 +102,7 @@ app.get('/posts/:postId', (req, res) => {
     if(err) {
       post = {title: 'Not Found', content: 'There appears to be a problem with the post id.'}
     }
-    res.render('post', {post: post});
+    res.render('post', {post: post, pageTracker: pageTracker});
   });
 });
 

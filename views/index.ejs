@@ -12,5 +12,15 @@
       <a class="blog-post__btn" href="/posts/<%= post._id %>">Read More</a>
     </div>
 <% }) %>
+<nav class="page-nav">
+  <% if(prevPage) { %>
+    <a href="/pages/<%= prevPage %>" class="page-nav__link btn btn-prev">
+      Previous
+    </a>
+  <% } %>
+  <% if(nextPage) { %>
+    <a href="/pages/<%= nextPage %>" class="page-nav__link btn">Next</a>
+  <% } %>
+</nav>
 
 <%- include('./partials/footer') -%>
