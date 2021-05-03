@@ -16,6 +16,18 @@ body {
   margin: 0;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul {
+  list-style-position: inside;
+  padding-left: 20px;
+}
+
 .site-wrapper {
   display: -ms-grid;
   display: grid;
@@ -40,11 +52,20 @@ main {
   margin-right: auto;
 }
 
-.title {
-  margin-bottom: 1.2rem;
+.button-group {
+  margin: 1rem 0;
+}
+
+.button-group .btn {
+  background-color: #369;
+}
+
+.button-group .btn:hover {
+  background-color: #4186ca;
 }
 
 .btn {
+  display: inline-block;
   font-family: inherit;
   font-size: 1rem;
   text-decoration: none;
@@ -100,18 +121,6 @@ main {
 
 .site-header__text > * {
   margin: 0;
-}
-
-@media screen and (max-width: 600px) {
-  .site-header__text {
-    font-size: 0.9rem;
-    margin-top: 1.5rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
-  .site-header__text__title {
-    font-size: 2rem;
-  }
 }
 
 .site-nav {
@@ -186,8 +195,8 @@ main {
           justify-content: center;
 }
 
-.page-nav__link {
-  margin-right: 1rem;
+.page-nav__link:nth-child(2) {
+  margin-left: 1rem;
 }
 
 .btn-prev {
@@ -199,17 +208,8 @@ main {
   background-color: var(--site-dark-lighter);
 }
 
-@media screen and (max-width: 480px) {
-  main {
-    padding: 0;
-  }
-  .blog-post {
-    padding: 2rem 1.5rem;
-  }
-  .section {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
+.page-count {
+  text-align: center;
 }
 
 /***************************
@@ -217,13 +217,15 @@ main {
 ****************************/
 .post-section__date {
   color: #575757;
-  text-decoration: underline;
 }
 
-.post-btn {
-  display: inline-block;
-  text-decoration: none;
-  margin-top: 0.5rem;
+.post-section__blog-content {
+  border-bottom: 1px dashed var(--site-dark);
+}
+
+.post-section__updated {
+  margin-top: 0;
+  color: crimson;
 }
 
 /************************
@@ -282,5 +284,32 @@ main {
 
 .site-footer a {
   color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .site-header__text {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .site-header__text__title {
+    font-size: 1.75rem;
+    margin-bottom: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    padding: 0;
+  }
+  .blog-post {
+    padding: 2rem 1.5rem;
+  }
+  .section {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 0.9rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */

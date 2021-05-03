@@ -2,14 +2,26 @@
 
 <section class="section post-section">
   <h2 class="title"><%= post.title %></h2>
+  
+  <div class="post-section__blog-content">
+    <%- post.content -%>
+  </div>
   <p class="post-section__date">
     Posted on: <%= post.date.toLocaleDateString() %>
     at <%= post.date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'}) %>
   </p>
-  <div class="blog-content">
-    <%- post.content -%>
-  </div>
-  <a href="/pages/<%= pageTracker %>" class="btn post-btn">Back to Posts List</a>
+  <% if(post.updated) { %>
+    <p class="post-section__updated">
+      Edited on: <%= post.updated.toLocaleDateString() %>
+      at <%= post.updated.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit' }) %>
+    </p>
+  <% } %>
+  <% if(isLoggedIn) { %>
+    <div class="button-group">
+      <a href="/edit/<%= post._id %>" class="btn">Edit Post</a>
+    </div>
+  <% } %>
+  <a href="/pages/<%= pageTracker %>" class="btn post-btn">Back to All Posts</a>
 </section>
 
 <%- include('./partials/footer') -%>
