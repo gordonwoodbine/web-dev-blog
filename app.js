@@ -30,7 +30,7 @@ app.use(passport.session());
 // Configure Mongoose
 
 /* Change MONGO_LOCAL back to MONGO_STR before pushing live */
-mongoose.connect(process.env.MONGO_LOCAL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGO_STR, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
 
 // Initialise Controller
