@@ -33,7 +33,7 @@ app.use(passport.session());
 // Configure Mongoose
 
 /* Change MONGO_LOCAL back to MONGO_STR before pushing live */
-mongoose.connect(process.env.MONGO_STR, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGO_LOCAL, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
 
 const postSchema = new mongoose.Schema({
@@ -179,7 +179,8 @@ app.post('/edit', (req, res) => {
 });
 
 app.post('/login',
-  passport.authenticate('local', {successRedirect: '/pages/' + pageTracker, failureRedirect: '/login'}));
+  passport.authenticate('local', {successRedirect: '/pages/' + pageTracker, failureRedirect: '/login'})
+);
 
 app.listen(process.env.PORT, () => {
   console.log('Server running...');
