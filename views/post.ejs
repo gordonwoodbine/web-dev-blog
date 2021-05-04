@@ -18,7 +18,10 @@
   <% } %>
   <% if(isLoggedIn) { %>
     <div class="button-group">
-      <a href="/edit/<%= post._id %>" class="btn">Edit Post</a>
+      <a href="/posts/<%= post._id %>/edit" class="btn">Edit Post</a>
+      <form method="POST" action="/posts/<%= post._id %>?_method=DELETE" onSubmit="return confirm('Delete <%= post.title %>?');">
+        <button type="submit" class="btn">Delete</button>
+      </form>
     </div>
   <% } %>
   <a href="/pages/<%= pageTracker %>" class="btn post-btn">Back to All Posts</a>

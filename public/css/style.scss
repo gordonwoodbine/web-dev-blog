@@ -54,9 +54,11 @@ main {
 
 .button-group {
   margin: 1rem 0;
+  display: flex;
 
   & .btn {
     background-color: #369;
+    margin-right: 1rem;
 
     &:hover {
       background-color: rgb(65, 134, 202);

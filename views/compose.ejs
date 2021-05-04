@@ -2,15 +2,8 @@
 
 <section class="section compose-section">
   <h2 class="title">Create New Post</h2>
-  <form class="compose-form" action="/compose" method="post">
-    <div class="form-group">
-      <label for="title">Post Title</label>
-      <input class="form-control" type="text" name="title" id="title" autocomplete="off">
-    </div>
-    <div class="form-group">
-      <label for="body">Post Content</label>
-      <textarea class="form-control ta-vertical" name="body" id="body" cols="30" rows="10"></textarea>
-    </div>
+  <form class="compose-form" action="/posts" method="post">
+    <%- include('./partials/post-form', { title: '', content: '' }); -%>
     <button class="btn" type="submit">Publish</button>
   </form>
 </section>

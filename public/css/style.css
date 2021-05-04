@@ -54,10 +54,14 @@ main {
 
 .button-group {
   margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .button-group .btn {
   background-color: #369;
+  margin-right: 1rem;
 }
 
 .button-group .btn:hover {

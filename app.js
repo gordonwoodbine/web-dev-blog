@@ -1,6 +1,7 @@
 // Imports
 
 const express = require('express');
+const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 const helmet = require('helmet');
@@ -19,6 +20,7 @@ let pageTracker = 1;
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
+app.use(methodOverride('_method'));
 // app.use(helmet());
 
 app.use(session({
@@ -93,11 +95,7 @@ app.get('/pages/:page', (req, res) => {
   }));
 });
 
-app.get('/about', (req, res) => {
-  res.render('about');
-});
-
-app.get('/compose', (req, res) => {
+app.get('/posts/new', (req, res) => {
   if(req.isAuthenticated()) {
     res.render('compose');
   } else {
@@ -105,7 +103,7 @@ app.get('/compose', (req, res) => {
   }
 });
 
-app.get('/edit/:postId', (req, res) => {
+app.get('/posts/:postId/edit', (req, res) => {
   if(req.isAuthenticated()) {
     const postId = req.params.postId;
     Post.findOne({ _id: postId }, (err, post) => {
@@ -136,13 +134,17 @@ app.get('/login', (req, res) => {
 app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
-})
+});
+
+app.get('/about', (req, res) => {
+  res.render('about');
+});
 
 // Post Routes
 
-app.post('/compose', (req, res) => {
+app.post('/posts', (req, res) => {
   if(req.isAuthenticated()) {
-    const convertedMD = md.render(req.body.body)
+    const convertedMD = md.render(req.body.content)
     const post = new Post({
       title: req.body.title,
       content: convertedMD
@@ -157,18 +159,24 @@ app.post('/compose', (req, res) => {
   }
 });
 
-app.post('/edit', (req, res) => {
+app.post('/login',
+  passport.authenticate('local', {successRedirect: '/pages/' + pageTracker, failureRedirect: '/login'})
+);
+
+// PUT Routes
+
+app.put('/posts/:id', (req, res) => {
   if(req.isAuthenticated()) {
-    Post.findOne({ _id: req.body.postId }, (err, post) => {
+    Post.findOne({ _id: req.params.id}, (err, post) => {
       if(err) {
-        console.log("No post found - no updates made.");
+        console.log('No post found - no updates made.');
       } else {
         post.title = req.body.title;
-        post.content = req.body.body;
+        post.content = req.body.content;
         post.updated = new Date();
         post.save(err => {
           if(!err) {
-            res.redirect('/posts/' + req.body.postId);
+            res.redirect('/posts/' + req.params.id);
           }
         });
       }
@@ -178,9 +186,18 @@ app.post('/edit', (req, res) => {
   }
 });
 
-app.post('/login',
-  passport.authenticate('local', {successRedirect: '/pages/' + pageTracker, failureRedirect: '/login'})
-);
+// DELETE Routes
+
+app.delete('/posts/:id', (req, res) => {
+  if(req.isAuthenticated()) {
+    Post.findByIdAndDelete(req.params.id, err => {
+      if(err) {
+        console.log(err);
+      }
+      res.redirect('/');
+    });
+  }
+});
 
 app.listen(process.env.PORT, () => {
   console.log('Server running...');
